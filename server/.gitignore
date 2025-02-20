@@ -1,0 +1,7 @@
+node_modules/
+
+.env
+node_modules/
+seed.js
+package-lock.json
+shopify.js
