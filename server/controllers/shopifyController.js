@@ -9,7 +9,7 @@ const SHOPIFY_ACCESS_TOKEN = process.env.SHOPIFY_ACCESS_TOKEN;
 const fetchOrders = async (req, res) => {
     try {  
       const response = await axios.get(
-        `https://${SHOPIFY_STORE_URL}/admin/api/2023-01/orders.json?status=any`,  // ✅ Fetch all orders
+        `https://${SHOPIFY_STORE_URL}/admin/api/2023-01/orders.json?status=any`,  // ✅ Fetch all orders including the archived orders
         {
           headers: {
             "X-Shopify-Access-Token": SHOPIFY_ACCESS_TOKEN,
@@ -17,7 +17,7 @@ const fetchOrders = async (req, res) => {
         }
       );
     
-      res.json(response.data.orders);  // ✅ Ensure only `orders` are sent
+      res.json(response.data.orders);  // ✅ Making sure that only `orders` data is sent
     } catch (error) {
       console.error("Shopify API Error:", error.response?.data || error.message);
       res.status(500).json({ error: error.message });
